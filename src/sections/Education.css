@@ -1,0 +1,82 @@
+.education {
+  background: var(--paper);
+}
+
+.seal-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2.4rem 2.8rem;
+  padding-top: 0.5rem;
+}
+
+.seal {
+  width: 8.5rem;
+  text-align: center;
+  margin-top: var(--seal-nudge, 0);
+}
+
+.seal:nth-child(2) {
+  margin-left: 0.65rem;
+}
+
+.seal:nth-child(3) {
+  margin-top: 0.85rem;
+}
+
+.seal:nth-child(4) {
+  margin-left: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.seal__ring {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 0.9rem;
+  border: 1px solid var(--thread-gold);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--thread-gold);
+}
+
+.seal__monogram {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.45rem;
+  color: var(--rose-deep);
+}
+
+.seal__degree {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.seal__meta {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 520px) {
+  .seal-row {
+    gap: 2rem 1.5rem;
+    justify-content: flex-start;
+  }
+
+  .seal {
+    width: 7.5rem;
+  }
+
+  .seal__ring {
+    width: 90px;
+    height: 90px;
+  }
+}

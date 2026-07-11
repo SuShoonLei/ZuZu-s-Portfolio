@@ -1,0 +1,42 @@
+.contact {
+  background: linear-gradient(180deg, var(--paper-shadow) 0%, var(--paper) 55%);
+}
+
+.contact__inner {
+  max-width: 36rem;
+}
+
+.contact__closing {
+  margin-top: 0.5rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+}
+
+.contact__signature {
+  margin: 0.85rem 0 2rem;
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.2;
+  color: var(--rose-deep);
+}
+
+.contact__details {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-style: normal;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.contact__details a {
+  border-bottom: 1px solid transparent;
+}
+
+.contact__details a:hover,
+.contact__details a:focus-visible {
+  border-bottom-color: var(--thread-gold);
+  color: var(--rose-deep);
+}

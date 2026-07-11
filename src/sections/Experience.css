@@ -1,0 +1,121 @@
+.experience {
+  background: var(--paper);
+}
+
+.ledger {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ledger::before {
+  content: '';
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  left: 7.35rem;
+  width: 1px;
+  background: var(--thread-gold);
+  opacity: 0.7;
+}
+
+.ledger__entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr);
+  column-gap: 1.75rem;
+  outline: none;
+}
+
+.ledger__entry::before {
+  content: '';
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: 7.35rem;
+  width: 1px;
+  background: var(--thread-gold);
+  opacity: 0;
+  transition: opacity 150ms linear, width 150ms linear;
+  pointer-events: none;
+}
+
+.ledger__entry:hover::before,
+.ledger__entry:focus-visible::before {
+  opacity: 1;
+  width: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ledger__entry::before {
+    transition: none;
+  }
+
+  .ledger__entry:hover::before,
+  .ledger__entry:focus-visible::before {
+    width: 1px;
+    opacity: 0.85;
+  }
+}
+
+.ledger__dates {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-align: right;
+  color: var(--ink-soft);
+}
+
+.ledger__body {
+  padding-left: 0.35rem;
+}
+
+.ledger__company {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.8vw, 1.55rem);
+  font-weight: 450;
+  color: var(--ink);
+}
+
+.ledger__role {
+  margin-bottom: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.ledger__summary {
+  max-width: 52ch;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .ledger::before,
+  .ledger__entry::before {
+    left: 0.35rem;
+  }
+
+  .ledger__entry {
+    grid-template-columns: 1fr;
+    row-gap: 0.55rem;
+    padding-left: 1.35rem;
+  }
+
+  .ledger__dates {
+    text-align: left;
+  }
+
+  .ledger__body {
+    padding-left: 0;
+  }
+}

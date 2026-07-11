@@ -1,0 +1,13 @@
+.about {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-shadow) 48%, var(--paper) 100%);
+}
+
+.about__inner {
+  max-width: 42rem;
+}
+
+.about__text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+}

@@ -1,0 +1,20 @@
+:root {
+  --paper: #fbf6f2;
+  --paper-shadow: #f0e2e0;
+  --rose: #e7b8c2;
+  --rose-deep: #b97c89;
+  --ink: #3a2e2f;
+  --ink-soft: #6e5a5c;
+  --thread-gold: #c9a66b;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-body: 'Work Sans', 'Segoe UI', sans-serif;
+  --font-script: 'Petit Formal Script', cursive;
+
+  --nav-height: 72px;
+  --section-pad-y: clamp(4rem, 9vw, 6.5rem);
+  --section-pad-x: clamp(1.25rem, 5vw, 3.5rem);
+  --content-max: 980px;
+  --thread-gutter: 7.5rem;
+}

@@ -1,0 +1,108 @@
+.page-nav {
+  padding: 2.25rem var(--section-pad-x) 3rem;
+  border-top: 1px solid rgba(201, 166, 107, 0.35);
+}
+
+.page-nav__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.page-nav__side--next {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-nav__btn {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: min(100%, 11rem);
+  padding: 0.35rem 0;
+}
+
+.page-nav__side--prev .page-nav__btn {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.page-nav__side--next .page-nav__btn {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.page-nav__direction {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.page-nav__label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 450;
+  line-height: 1.2;
+  color: var(--ink);
+  border-bottom: 1px solid var(--thread-gold);
+}
+
+.page-nav__btn:hover .page-nav__label,
+.page-nav__btn:focus-visible .page-nav__label {
+  color: var(--rose-deep);
+}
+
+.page-nav__progress {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.page-nav__progress-sep {
+  margin: 0 0.2rem;
+  opacity: 0.55;
+}
+
+.page-nav__placeholder {
+  display: block;
+  min-width: 11rem;
+  min-height: 2.8rem;
+}
+
+@media (max-width: 640px) {
+  .page-nav__inner {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .page-nav__progress {
+    order: -1;
+    text-align: center;
+  }
+
+  .page-nav__side--prev,
+  .page-nav__side--next {
+    justify-content: stretch;
+  }
+
+  .page-nav__btn,
+  .page-nav__side--prev .page-nav__btn,
+  .page-nav__side--next .page-nav__btn {
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .page-nav__placeholder {
+    display: none;
+  }
+}

@@ -1,0 +1,59 @@
+.competencies {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-shadow) 100%);
+}
+
+.stamp-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem 1.65rem;
+  max-width: 44rem;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.stamp {
+  position: relative;
+  display: inline-flex;
+  transform: rotate(var(--stamp-rotate, 0deg));
+}
+
+.stamp__inner {
+  display: inline-block;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--thread-gold);
+  border-radius: 3px 8px 4px 9px / 6px 3px 8px 4px;
+  box-shadow: inset 0 0 0 1px rgba(201, 166, 107, 0.35);
+  background: transparent;
+}
+
+.stamp--rose .stamp__inner {
+  border-color: var(--rose-deep);
+  box-shadow: inset 0 0 0 1px rgba(185, 124, 137, 0.35);
+  color: var(--ink);
+}
+
+.stamp--lg .stamp__inner {
+  font-size: 0.78rem;
+  padding: 0.7rem 1.1rem;
+}
+
+.stamp--md .stamp__inner {
+  font-size: 0.7rem;
+}
+
+.stamp--sm .stamp__inner {
+  font-size: 0.62rem;
+  padding: 0.45rem 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .stamp-field {
+    gap: 0.95rem 1.1rem;
+  }
+}
