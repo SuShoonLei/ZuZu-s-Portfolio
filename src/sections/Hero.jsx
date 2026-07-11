@@ -5,7 +5,7 @@ import MetallicPaint from '../components/MetallicPaint';
 import nameLogo from '../assets/name-wordmark.svg';
 import './Hero.css';
 
-const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '—', 'PERSONNEL', 'RECORD'];
+const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '-', 'PERSONNEL', 'RECORD'];
 
 export default function Hero() {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -58,7 +58,7 @@ export default function Hero() {
       <div className="hero__veil" aria-hidden="true" />
 
       <div className="hero__content">
-        <p className="hero__re" aria-label="RE: MYAT MYINT ZU — PERSONNEL RECORD">
+        <p className="hero__re" aria-label="RE: MYAT MYINT ZU - PERSONNEL RECORD">
           {HEADER_WORDS.map((word, index) => (
             <span
               key={`${word}-${index}`}
@@ -91,7 +91,7 @@ export default function Hero() {
         <p className="hero__title">HR Leader | Human Resources Specialist</p>
         <p className="hero__tagline">
           Results-driven HR professional with 7+ years across entertainment, finance, trading,
-          construction, and retail — specializing in full-cycle recruitment, payroll, and strategic
+          construction, and retail - specializing in full-cycle recruitment, payroll, and strategic
           L&D.
         </p>
 

@@ -2,9 +2,10 @@ import './Contact.css';
 
 const PHONE = '(+66) 063 130 2665';
 const PHONE_HREF = 'tel:+66631302665';
-/* TODO: replace with the real email address */
-const EMAIL = 'your.email@example.com';
+const EMAIL = 'cupidoflove1500@gmail.com';
 const EMAIL_HREF = `mailto:${EMAIL}`;
+const LINE_ID = 'm_m_zu';
+
 
 export default function Contact() {
   return (
@@ -26,6 +27,7 @@ export default function Contact() {
           <p>
             <a href={EMAIL_HREF}>{EMAIL}</a>
           </p>
+          <p>LINE ID: {LINE_ID}</p>
         </address>
       </div>
     </section>

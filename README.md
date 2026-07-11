@@ -1,4 +1,4 @@
-# Myat Myint Zu — Portfolio
+# Myat Myint Zu - Portfolio
 
 Personal portfolio site for Myat Myint Zu, HR Leader / Human Resources Specialist (Bangkok).
 

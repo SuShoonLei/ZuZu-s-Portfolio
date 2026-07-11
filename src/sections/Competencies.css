@@ -14,7 +14,10 @@
 .stamp {
   position: relative;
   display: inline-flex;
+  cursor: pointer;
   transform: rotate(var(--stamp-rotate, 0deg));
+  transition: filter 0.2s linear;
+  outline: none;
 }
 
 .stamp__inner {
@@ -30,6 +33,11 @@
   border-radius: 3px 8px 4px 9px / 6px 3px 8px 4px;
   box-shadow: inset 0 0 0 1px rgba(201, 166, 107, 0.35);
   background: transparent;
+  transition:
+    color 0.2s linear,
+    border-color 0.2s linear,
+    box-shadow 0.2s linear,
+    background-color 0.2s linear;
 }
 
 .stamp--rose .stamp__inner {
@@ -50,6 +58,73 @@
 .stamp--sm .stamp__inner {
   font-size: 0.62rem;
   padding: 0.45rem 0.75rem;
+}
+
+/* Live animation while the cursor (or keyboard focus) is on a stamp */
+.stamp:hover,
+.stamp:focus-visible {
+  z-index: 2;
+  animation: stamp-live 1.05s ease-in-out infinite;
+}
+
+.stamp:hover .stamp__inner,
+.stamp:focus-visible .stamp__inner {
+  color: var(--rose-deep);
+  border-color: var(--rose-deep);
+  background-color: rgba(231, 184, 194, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(185, 124, 137, 0.45),
+    0 0 0 1px rgba(201, 166, 107, 0.25);
+  animation: stamp-ink 1.05s ease-in-out infinite;
+}
+
+.stamp--rose:hover .stamp__inner,
+.stamp--rose:focus-visible .stamp__inner {
+  color: var(--ink);
+  background-color: rgba(185, 124, 137, 0.12);
+}
+
+@keyframes stamp-live {
+  0%,
+  100% {
+    transform: rotate(var(--stamp-rotate, 0deg)) translateY(0) scale(1);
+  }
+  25% {
+    transform: rotate(calc(var(--stamp-rotate, 0deg) + 1.4deg)) translateY(-2px) scale(1.045);
+  }
+  50% {
+    transform: rotate(calc(var(--stamp-rotate, 0deg) - 1deg)) translateY(-1px) scale(1.03);
+  }
+  75% {
+    transform: rotate(calc(var(--stamp-rotate, 0deg) + 0.8deg)) translateY(-3px) scale(1.055);
+  }
+}
+
+@keyframes stamp-ink {
+  0%,
+  100% {
+    letter-spacing: 0.14em;
+    filter: brightness(1);
+  }
+  50% {
+    letter-spacing: 0.18em;
+    filter: brightness(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp:hover,
+  .stamp:focus-visible {
+    animation: none;
+    transform: rotate(var(--stamp-rotate, 0deg));
+  }
+
+  .stamp:hover .stamp__inner,
+  .stamp:focus-visible .stamp__inner {
+    animation: none;
+    letter-spacing: 0.14em;
+    filter: none;
+  }
 }
 
 @media (max-width: 480px) {

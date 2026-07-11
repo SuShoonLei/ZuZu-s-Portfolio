@@ -23,6 +23,7 @@ export default function Competencies() {
               key={stamp.label}
               className={`stamp stamp--${stamp.size} stamp--${stamp.outline}`}
               style={{ '--stamp-rotate': `${stamp.rotate}deg` }}
+              tabIndex={0}
             >
               <span className="stamp__inner">{stamp.label}</span>
             </li>

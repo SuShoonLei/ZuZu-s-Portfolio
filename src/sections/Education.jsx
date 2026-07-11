@@ -20,7 +20,7 @@ const CREDENTIALS = [
     monogram: 'YG',
   },
   {
-    title: 'Mini HR–OD Program',
+    title: 'Mini HR-OD Program',
     school: 'Assumption University',
     year: null,
     monogram: 'OD',

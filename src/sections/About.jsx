@@ -11,7 +11,7 @@ export default function About() {
           finance, trading, construction, and retail. Skilled in full-cycle recruitment, payroll
           administration, and strategic learning &amp; development, with a proven ability to align
           people practices with business goals. Based in Bangkok, Thailand, and fluent in English
-          and Burmese — bringing cross-cultural insight to talent, compliance, and organizational
+          and Burmese - bringing cross-cultural insight to talent, compliance, and organizational
           growth.
         </p>
       </div>
