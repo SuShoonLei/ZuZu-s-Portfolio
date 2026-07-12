@@ -120,7 +120,7 @@ export default function Hero() {
       <div className="hero__veil" aria-hidden="true" />
 
       <div className="hero__content">
-        <p className="hero__re" aria-label="RE: MYAT MYINT ZU - PERSONAL RECORD">
+        <p className="hero__re" aria-label="MYAT MYINT ZU - PERSONAL RECORD">
           {HEADER_WORDS.map((word, index) => (
             <span
               key={`${word}-${index}`}
