@@ -5,6 +5,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import SplashCursor from './components/SplashCursor';
 import IntroductionPage from './pages/IntroductionPage';
 import CompetenciesPage from './pages/CompetenciesPage';
 import ExperiencePage from './pages/ExperiencePage';
@@ -23,9 +24,20 @@ function ScrollToTop() {
 }
 
 function AppShell() {
+  const { pathname } = useLocation();
+  const showSplashCursor = pathname !== '/';
+
   return (
     <div className="app">
       <ScrollToTop />
+      {showSplashCursor ? (
+        <SplashCursor
+          RAINBOW_MODE={false}
+          COLOR="#E7B8C2"
+          DENSITY_DISSIPATION={2.8}
+          SPLAT_RADIUS={0.18}
+        />
+      ) : null}
       <Navbar />
       <main className="app__main">
         <Routes>
