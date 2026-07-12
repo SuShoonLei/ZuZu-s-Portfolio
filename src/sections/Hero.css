@@ -62,9 +62,11 @@
 }
 
 .hero__name {
+  /* Tall enough to show the full metallic text band (incl. descenders) */
   position: relative;
   width: min(100%, 40rem);
-  height: clamp(4rem, 11vw, 6.5rem);
+  aspect-ratio: 100 / 42;
+  height: auto;
   margin: 0 0 0.85rem;
   overflow: hidden;
 }
@@ -91,18 +93,23 @@
   opacity: 0;
 }
 
-/* Cover crops empty letterbox bands so the full wide name stays in view */
+/*
+  MetallicPaint renders a square. Size it to the title width, center it, and let
+  the taller viewport keep the full name band (including lower strokes) visible.
+*/
 .hero__name .paint-container {
   position: absolute !important;
-  inset: 0;
+  left: 0;
+  top: 50%;
   z-index: 1;
   width: 100% !important;
-  height: 100% !important;
+  height: auto !important;
   max-width: none !important;
+  aspect-ratio: 1 / 1;
   display: block;
-  object-fit: cover;
-  object-position: left center;
-  transform: none;
+  object-fit: contain;
+  object-position: center center;
+  transform: translateY(-50%);
 }
 
 .hero__title {
@@ -145,7 +152,7 @@
 @media (max-width: 640px) {
   .hero__name {
     width: 100%;
-    height: clamp(3.25rem, 14vw, 5rem);
+    aspect-ratio: 100 / 46;
   }
 
   .hero__name-fallback {

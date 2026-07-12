@@ -24,31 +24,38 @@ function useMetallicNameSrc() {
 
       if (cancelled) return;
 
-      // Wide wordmark: MetallicPaint's square canvas letterboxes it, then CSS
-      // object-fit: cover crops empty top/bottom so the full name stays visible.
+      const text = 'Myat Myint Zu';
       const width = 2000;
-      const height = 520;
+      const sidePad = 80;
+      const maxTextWidth = width - sidePad * 2;
+
+      const measure = document.createElement('canvas').getContext('2d');
+      let fontSize = 240;
+      do {
+        measure.font = `italic 600 ${fontSize}px Fraunces, Georgia, "Times New Roman", serif`;
+        if (measure.measureText(text).width <= maxTextWidth) break;
+        fontSize -= 4;
+      } while (fontSize > 60);
+
+      measure.font = `italic 600 ${fontSize}px Fraunces, Georgia, "Times New Roman", serif`;
+      const metrics = measure.measureText(text);
+      const ascent = metrics.actualBoundingBoxAscent || fontSize * 0.85;
+      const descent = metrics.actualBoundingBoxDescent || fontSize * 0.3;
+      // Extra padding so italic descenders/flourishes are never clipped.
+      const verticalPad = Math.ceil(fontSize * 0.55);
+      const height = Math.ceil(ascent + descent + verticalPad * 2);
+
       const canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
-
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = '#000000';
+      ctx.font = `italic 600 ${fontSize}px Fraunces, Georgia, "Times New Roman", serif`;
       ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillText(text, sidePad, verticalPad + ascent);
 
-      const text = 'Myat Myint Zu';
-      const sidePad = width * 0.04;
-      const maxWidth = width - sidePad * 2;
-      let fontSize = 260;
-      do {
-        ctx.font = `italic 600 ${fontSize}px Fraunces, Georgia, "Times New Roman", serif`;
-        if (ctx.measureText(text).width <= maxWidth) break;
-        fontSize -= 4;
-      } while (fontSize > 60);
-
-      ctx.fillText(text, sidePad, height * 0.55);
       setImageSrc(canvas.toDataURL('image/png'));
     }
 
