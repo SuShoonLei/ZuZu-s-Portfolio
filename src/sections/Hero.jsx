@@ -4,8 +4,6 @@ import Antigravity from '../components/Antigravity';
 import MetallicPaint from '../components/MetallicPaint';
 import './Hero.css';
 
-const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '-', 'PERSONAL', 'RECORD'];
-
 function useMetallicNameSrc() {
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -69,34 +67,7 @@ function useMetallicNameSrc() {
 }
 
 export default function Hero() {
-  const [visibleCount, setVisibleCount] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const nameSrc = useMetallicNameSrc();
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const sync = () => setReducedMotion(mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
-
-  useEffect(() => {
-    if (reducedMotion) {
-      setVisibleCount(HEADER_WORDS.length);
-      return undefined;
-    }
-
-    setVisibleCount(0);
-    let i = 0;
-    const id = window.setInterval(() => {
-      i += 1;
-      setVisibleCount(i);
-      if (i >= HEADER_WORDS.length) window.clearInterval(id);
-    }, 220);
-
-    return () => window.clearInterval(id);
-  }, [reducedMotion]);
 
   return (
     <section id="hero" className="hero" aria-label="Introduction">
@@ -120,15 +91,8 @@ export default function Hero() {
       <div className="hero__veil" aria-hidden="true" />
 
       <div className="hero__content">
-        <p className="hero__re" aria-label="MYAT MYINT ZU - PERSONAL RECORD">
-          {HEADER_WORDS.map((word, index) => (
-            <span
-              key={`${word}-${index}`}
-              className={`hero__re-word${index < visibleCount ? ' is-visible' : ''}`}
-            >
-              {word}
-            </span>
-          ))}
+        <p className="hero__lead">
+          Every résumé tells a story. I&apos;m here to make sure the right ones get heard.
         </p>
 
         <div className="hero__name" aria-label="Myat Myint Zu">
