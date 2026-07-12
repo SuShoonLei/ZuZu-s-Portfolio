@@ -4,7 +4,7 @@ import Antigravity from '../components/Antigravity';
 import MetallicPaint from '../components/MetallicPaint';
 import './Hero.css';
 
-const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '-', 'PERSONNEL', 'RECORD'];
+const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '-', 'PERSONAL', 'RECORD'];
 
 function useMetallicNameSrc() {
   const [imageSrc, setImageSrc] = useState(null);
@@ -120,7 +120,7 @@ export default function Hero() {
       <div className="hero__veil" aria-hidden="true" />
 
       <div className="hero__content">
-        <p className="hero__re" aria-label="RE: MYAT MYINT ZU - PERSONNEL RECORD">
+        <p className="hero__re" aria-label="RE: MYAT MYINT ZU - PERSONAL RECORD">
           {HEADER_WORDS.map((word, index) => (
             <span
               key={`${word}-${index}`}
