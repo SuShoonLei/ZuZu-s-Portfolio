@@ -2,14 +2,69 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Antigravity from '../components/Antigravity';
 import MetallicPaint from '../components/MetallicPaint';
-import nameLogo from '../assets/name-wordmark.svg';
 import './Hero.css';
 
 const HEADER_WORDS = ['RE:', 'MYAT', 'MYINT', 'ZU', '-', 'PERSONNEL', 'RECORD'];
 
+function useMetallicNameSrc() {
+  const [imageSrc, setImageSrc] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function createWordmark() {
+      try {
+        if (document.fonts?.load) {
+          await document.fonts.load('600 italic 220px Fraunces');
+        }
+        await document.fonts?.ready;
+      } catch {
+        // Fall through with system serif if Fraunces is slow to load.
+      }
+
+      if (cancelled) return;
+
+      // Wide wordmark: MetallicPaint's square canvas letterboxes it, then CSS
+      // object-fit: cover crops empty top/bottom so the full name stays visible.
+      const width = 2000;
+      const height = 520;
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#000000';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+
+      const text = 'Myat Myint Zu';
+      const sidePad = width * 0.04;
+      const maxWidth = width - sidePad * 2;
+      let fontSize = 260;
+      do {
+        ctx.font = `italic 600 ${fontSize}px Fraunces, Georgia, "Times New Roman", serif`;
+        if (ctx.measureText(text).width <= maxWidth) break;
+        fontSize -= 4;
+      } while (fontSize > 60);
+
+      ctx.fillText(text, sidePad, height * 0.55);
+      setImageSrc(canvas.toDataURL('image/png'));
+    }
+
+    createWordmark();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return imageSrc;
+}
+
 export default function Hero() {
   const [visibleCount, setVisibleCount] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const nameSrc = useMetallicNameSrc();
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -70,22 +125,26 @@ export default function Hero() {
         </p>
 
         <div className="hero__name" aria-label="Myat Myint Zu">
-          <MetallicPaint
-            imageSrc={nameLogo}
-            seed={12}
-            scale={3}
-            liquid={0.4}
-            speed={0.2}
-            brightness={1.6}
-            contrast={0.6}
-            refraction={0.008}
-            blur={0.02}
-            fresnel={1}
-            lightColor="#FBF6F2"
-            darkColor="#B97C89"
-            tintColor="#E7B8C2"
-          />
-          <h1 className="sr-only">Myat Myint Zu</h1>
+          <h1 className={`hero__name-fallback${nameSrc ? ' is-hidden' : ''}`}>
+            Myat Myint Zu
+          </h1>
+          {nameSrc ? (
+            <MetallicPaint
+              imageSrc={nameSrc}
+              seed={12}
+              scale={3}
+              liquid={0.4}
+              speed={0.2}
+              brightness={1.6}
+              contrast={0.6}
+              refraction={0.008}
+              blur={0.02}
+              fresnel={1}
+              lightColor="#FBF6F2"
+              darkColor="#B97C89"
+              tintColor="#E7B8C2"
+            />
+          ) : null}
         </div>
 
         <p className="hero__title">HR Leader | Human Resources Specialist</p>
