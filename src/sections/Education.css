@@ -14,6 +14,8 @@
   width: 8.5rem;
   text-align: center;
   margin-top: var(--seal-nudge, 0);
+  cursor: pointer;
+  outline: none;
 }
 
 .seal:nth-child(2) {
@@ -38,6 +40,10 @@
   border: 1px solid var(--thread-gold);
   border-radius: 50%;
   box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px var(--thread-gold);
+  transition:
+    border-color 0.2s linear,
+    box-shadow 0.2s linear,
+    transform 0.2s linear;
 }
 
 .seal__monogram {
@@ -45,6 +51,148 @@
   font-style: italic;
   font-size: 1.45rem;
   color: var(--rose-deep);
+  transition: color 0.2s linear, text-shadow 0.2s linear;
+}
+
+/* Live glow while cursor/focus is on each seal ring */
+.seal:hover .seal__ring,
+.seal:focus-visible .seal__ring {
+  border-color: var(--rose-deep);
+  animation: seal-glow-gold 1.15s ease-in-out infinite;
+}
+
+.seal:hover .seal__monogram,
+.seal:focus-visible .seal__monogram {
+  color: var(--ink);
+  animation: seal-mono-glow 1.15s ease-in-out infinite;
+}
+
+.seal--glow-1:hover .seal__ring,
+.seal--glow-1:focus-visible .seal__ring {
+  animation-name: seal-glow-gold;
+}
+
+.seal--glow-2:hover .seal__ring,
+.seal--glow-2:focus-visible .seal__ring {
+  animation-name: seal-glow-rose;
+}
+
+.seal--glow-3:hover .seal__ring,
+.seal--glow-3:focus-visible .seal__ring {
+  animation-name: seal-glow-soft;
+}
+
+.seal--glow-4:hover .seal__ring,
+.seal--glow-4:focus-visible .seal__ring {
+  animation-name: seal-glow-pulse;
+}
+
+@keyframes seal-glow-gold {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--thread-gold),
+      0 0 10px rgba(201, 166, 107, 0.35),
+      0 0 22px rgba(201, 166, 107, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px #d4b57a,
+      0 0 16px rgba(201, 166, 107, 0.7),
+      0 0 34px rgba(231, 184, 194, 0.45);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes seal-glow-rose {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--rose-deep),
+      0 0 10px rgba(185, 124, 137, 0.35),
+      0 0 22px rgba(185, 124, 137, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--rose),
+      0 0 18px rgba(185, 124, 137, 0.75),
+      0 0 36px rgba(231, 184, 194, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes seal-glow-soft {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--thread-gold),
+      0 0 8px rgba(231, 184, 194, 0.3),
+      0 0 18px rgba(201, 166, 107, 0.18);
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--rose-deep),
+      0 0 20px rgba(231, 184, 194, 0.65),
+      0 0 38px rgba(201, 166, 107, 0.4);
+    transform: scale(1.04) rotate(1deg);
+  }
+}
+
+@keyframes seal-glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--thread-gold),
+      0 0 6px rgba(201, 166, 107, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 5px var(--rose-deep),
+      0 0 14px rgba(185, 124, 137, 0.7),
+      0 0 28px rgba(201, 166, 107, 0.45),
+      0 0 42px rgba(231, 184, 194, 0.35);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes seal-mono-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(185, 124, 137, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal:hover .seal__ring,
+  .seal:focus-visible .seal__ring,
+  .seal:hover .seal__monogram,
+  .seal:focus-visible .seal__monogram {
+    animation: none;
+  }
+
+  .seal:hover .seal__ring,
+  .seal:focus-visible .seal__ring {
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--thread-gold),
+      0 0 14px rgba(201, 166, 107, 0.45);
+    transform: none;
+  }
 }
 
 .seal__degree {

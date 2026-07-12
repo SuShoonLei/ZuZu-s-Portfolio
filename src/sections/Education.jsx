@@ -38,8 +38,9 @@ export default function Education() {
           {CREDENTIALS.map((item, index) => (
             <li
               key={item.title}
-              className="seal"
+              className={`seal seal--glow-${(index % 4) + 1}`}
               style={{ '--seal-nudge': `${(index % 3) * 0.35 - 0.35}rem` }}
+              tabIndex={0}
             >
               <div className="seal__ring" aria-hidden="true">
                 <span className="seal__monogram">{item.monogram}</span>
